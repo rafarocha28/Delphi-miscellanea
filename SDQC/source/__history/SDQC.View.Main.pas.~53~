@@ -1,0 +1,526 @@
+unit SDQC.View.Main;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.WinXCtrls, Vcl.ExtCtrls, OoMisc, AdPort,
+  System.Win.ScktComp,
+  SDQC.Enum.RunMode,
+  SDQC.Util.LogFacade,
+  SDQC.Forecourt.ForecourtSimulator,
+  SDQC.Forecourt.Factory;
+
+type
+  TMainForm = class(TForm)
+    MainPageControl: TPageControl;
+    EthernetTabSheet: TTabSheet;
+    SerialTabSheet: TTabSheet;
+    ReceiveEthernetGroupBox: TGroupBox;
+    ContainsEthernetCheckBox: TCheckBox;
+    TextToBeReceivedEthernetEdit: TEdit;
+    ReplyEthernetGroupBox: TGroupBox;
+    ReplyEthernetMemo: TMemo;
+    MonitorTabSheet: TTabSheet;
+    MonitorGroupBox: TGroupBox;
+    MonitorMemo: TMemo;
+    ClearMonitorButton: TButton;
+    InfoEthernetGroupBox: TGroupBox;
+    LedEthernetShape: TShape;
+    LedEthernetLabel: TLabel;
+    ConnectedIPLabel: TLabel;
+    OpenCloseEthernetGroupBox: TGroupBox;
+    PortLabel: TLabel;
+    PortEdit: TEdit;
+    OpenCloseEthernetButton: TButton;
+    ReceiveSerialGroupBox: TGroupBox;
+    ContainsSerialCheckBox: TCheckBox;
+    TextToBeReceivedSerialEdit: TEdit;
+    ReplySerialGroupBox: TGroupBox;
+    ReplySerialMemo: TMemo;
+    InfoSerialGroupBox: TGroupBox;
+    LedSerialShape: TShape;
+    LedSerialLabel: TLabel;
+    OpenCloseSerialGroupBox: TGroupBox;
+    OpenCloseSerialButton: TButton;
+    COMLabel: TLabel;
+    COMEdit: TEdit;
+    ServerSocket1: TServerSocket;
+    ApdComPort1: TApdComPort;
+    SpecifySizeSerialCheckBox: TCheckBox;
+    SpecifySizeSerialEdit: TEdit;
+    ConfigSerialButton: TButton;
+    procedure ClearMonitorButtonClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure OpenCloseEthernetButtonClick(Sender: TObject);
+    procedure ServerSocket1ClientConnect(Sender: TObject;
+      Socket: TCustomWinSocket);
+    procedure ServerSocket1ClientDisconnect(Sender: TObject;
+      Socket: TCustomWinSocket);
+    procedure ServerSocket1ClientRead(Sender: TObject;
+      Socket: TCustomWinSocket);
+    procedure OpenCloseSerialButtonClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure ApdComPort1TriggerAvail(CP: TObject; Count: Word);
+    procedure TextToBeReceivedSerialEditEnter(Sender: TObject);
+    procedure TextToBeReceivedSerialEditExit(Sender: TObject);
+    procedure TextToBeReceivedEthernetEditEnter(Sender: TObject);
+    procedure TextToBeReceivedEthernetEditExit(Sender: TObject);
+    procedure SpecifySizeSerialCheckBoxClick(Sender: TObject);
+    procedure SpecifySizeSerialEditChange(Sender: TObject);
+    procedure ConfigSerialButtonClick(Sender: TObject);
+  private
+    FRunMode: TRunMode;
+    FIsSerialActive: Boolean;
+    FIsEthernetActive: Boolean;
+    FLog: TLogFacade;
+    FForecourt: IForecourtSimulator;
+    FFactory: TForecourtFactory;
+    procedure ReadNormalModeEthernet(AReceivedText: AnsiString;
+      ASocket: TCustomWinSocket);
+    procedure ReadNormalModeSerial(AReceivedText: AnsiString);
+    procedure ReadSpecialModeEthernet(AReceivedText: AnsiString;
+      ASocket: TCustomWinSocket);
+    procedure ReadSpecialModeSerial(AReceivedText: AnsiString);
+    procedure SetRunMode(const AValue: TRunMode);
+    procedure SetEthernet(const AEnabled: Boolean);
+    procedure SetSerial(const AEnabled: Boolean);
+    procedure PrepareRunMode;
+    procedure WriteEthernet(AMsg: AnsiString; ASocket: TCustomWinSocket);
+    procedure WriteSerial(AMsg: AnsiString);
+    function GetReplyFromForecourt(AReceivedText: AnsiString): String;
+    procedure SetSerialComponents(const AActivated: Boolean);
+    procedure SetEthernetComponents(const AActivated: Boolean);
+  protected
+    FSerialText: String;
+    FEthernetText: String;
+    FReceivedMsg: AnsiString;
+    property Log: TLogFacade read FLog;
+    property Forecourt: IForecourtSimulator read FForecourt write FForecourt;
+    property Factory: TForecourtFactory read FFactory;
+  public
+    property RunMode: TRunMode read FRunMode write SetRunMode;
+    property Serial:Boolean read FIsSerialActive write FIsSerialActive;
+    property Ethernet: Boolean read FIsEthernetActive
+      write FIsEthernetActive;
+  end;
+
+const
+  AnsiEmptyStr: AnsiString = '';
+
+var
+  MainForm: TMainForm;
+
+implementation
+
+uses
+  System.StrUtils,
+  AdExcept,
+  SDQC.Forecourt.Abstract,
+  Util.Kkversion,
+  Util.HH, SDQC.View.SerialConfig;
+
+resourcestring
+  sConnectedIPNone = 'IP Conectado: nenhum';
+  sDeactivated = 'DESATIVADO';
+  sActivate = 'Ativar';
+  sDeactivate = 'Desativar';
+  sActivated = 'ATIVADO';
+  sInvalidPort = 'Porta inválida';
+  sNoReplyToSend = 'Nenhuma resposta para enviar';
+  sConnectedIP = 'IP Conectado: ';
+  sReceivedExpected = 'Recebido: %s%sEsperado:%s';
+  sReceveidExpectedToContain = 'Recebido: %s%sEsperado conter:%s';
+  sDefaultMainFormCaption = 'Simulador de Qualquer Coisa';
+  sInvalidCOM = 'Porta COM inválida';
+  sReceivedViaEthernet = 'Recebido via ethernet: %s';
+  sSentViaEthernet = 'Enviado via ethernet: %s';
+  sReceivedViaSerial = 'Recebido via serial: %s';
+  sSentViaSerial = 'Enviado via serial: %s';
+  sSpecialMode = '%s - SPECIAL MODE';
+  sEthernetActivated = 'Comunicação via ethernet ativada na porta %d';
+  sEthernetDeactivated = 'Comunicação via ethernet desativada na porta %d';
+  sSerialActivated = 'Comunicação via serial ativada na COM%d';
+  sSerialDeactivated = 'Comunicação via serial desativada na COM%d';
+  sCOMInUse = 'COM%d já está em uso.';
+  sCOMDoesntExist = 'COM%d não existe.';
+  sWaitingToReceive = 'Esperando receber "%s" (apenas contido na mensagem: %s)';
+  sYes = 'sim';
+  sNo = 'não';
+  sSizeOfToBeReceivedMessage = 'Tamanho da mensagem a ser recebida: %d';
+
+{$R *.dfm}
+
+procedure TMainForm.ReadSpecialModeEthernet(AReceivedText: AnsiString;
+  ASocket: TCustomWinSocket);
+var
+  s: String;
+begin
+  s := EmptyStr;
+  s := GetReplyFromForecourt(AReceivedText);
+  if not SameText(s, EmptyStr) then
+    WriteEthernet(AnsiString(s), ASocket);
+end;
+
+procedure TMainForm.ReadSpecialModeSerial(AReceivedText: AnsiString);
+var
+  s: String;
+begin
+  s := EmptyStr;
+  s := GetReplyFromForecourt(AReceivedText);
+  if not SameText(s, EmptyStr) then
+    WriteSerial(AnsiString(s));
+end;
+
+procedure TMainForm.SetEthernet(const AEnabled: Boolean);
+begin
+  ReceiveEthernetGroupBox.Enabled := AEnabled;
+  ReplyEthernetGroupBox.Enabled := AEnabled;
+end;
+
+procedure TMainForm.SetSerial(const AEnabled: Boolean);
+begin
+  ReceiveSerialGroupBox.Enabled := AEnabled;
+  ReplySerialGroupBox.Enabled := AEnabled;
+end;
+
+procedure TMainForm.SetSerialComponents(const AActivated: Boolean);
+begin
+  if AActivated then
+  begin
+    OpenCloseSerialButton.Caption := sDeactivate;
+    LedSerialShape.Brush.Color := clGreen;
+    LedSerialLabel.Caption := sActivated;
+    Log.WriteHeader(sSerialActivated, [ApdComPort1.ComNumber]);
+    Log.Write(sWaitingToReceive, [TextToBeReceivedSerialEdit.Text,
+      IfThen(ContainsSerialCheckBox.Checked, sYes, sNo)]);
+  end
+  else
+  begin
+    OpenCloseSerialButton.Caption := sActivate;
+    LedSerialShape.Brush.Color := clRed;
+    LedSerialLabel.Caption := sDeactivated;
+    Log.WriteHeader(sSerialDeactivated, [ApdComPort1.ComNumber]);
+  end;
+  Serial := AActivated;
+end;
+
+procedure TMainForm.SpecifySizeSerialCheckBoxClick(Sender: TObject);
+begin
+  SpecifySizeSerialEdit.Enabled := SpecifySizeSerialCheckBox.Checked;
+
+  if Serial and SpecifySizeSerialCheckBox.Checked then
+    Log.Write(sSizeOfToBeReceivedMessage, [SpecifySizeSerialEdit.Text]);
+end;
+
+procedure TMainForm.SpecifySizeSerialEditChange(Sender: TObject);
+var
+  text: String;
+begin
+  text := Trim(SpecifySizeSerialEdit.Text);
+  if IsEmpty(text) or (StrToInt(text) <= 0) then
+    SpecifySizeSerialEdit.Text := '1';
+end;
+
+procedure TMainForm.TextToBeReceivedEthernetEditEnter(Sender: TObject);
+begin
+  FEthernetText := Trim(TextToBeReceivedEthernetEdit.Text);
+end;
+
+procedure TMainForm.TextToBeReceivedEthernetEditExit(Sender: TObject);
+begin
+  if Ethernet and (not SameText(Trim(TextToBeReceivedEthernetEdit.Text), FEthernetText)) then
+  begin
+    FEthernetText := Trim(TextToBeReceivedEthernetEdit.Text);
+    Log.Write(sWaitingToReceive, [FEthernetText,
+      IfThen(ContainsEthernetCheckBox.Checked, sYes, sNo)]);
+  end;
+end;
+
+procedure TMainForm.TextToBeReceivedSerialEditEnter(Sender: TObject);
+begin
+  FSerialText := Trim(TextToBeReceivedSerialEdit.Text);
+end;
+
+procedure TMainForm.TextToBeReceivedSerialEditExit(Sender: TObject);
+begin
+  if Serial and (not SameText(Trim(TextToBeReceivedSerialEdit.Text), FSerialText)) then
+  begin
+    FSerialText := Trim(TextToBeReceivedSerialEdit.Text);
+    Log.Write(sWaitingToReceive, [FSerialText,
+      IfThen(ContainsSerialCheckBox.Checked, sYes, sNo)]);
+  end;
+end;
+
+procedure TMainForm.SetEthernetComponents(const AActivated: Boolean);
+begin
+  if AActivated then
+  begin
+    OpenCloseEthernetButton.Caption := sDeactivate;
+    LedEthernetShape.Brush.Color := clGreen;
+    LedEthernetLabel.Caption := sActivated;
+    Log.WriteHeader(sEthernetActivated, [ServerSocket1.Port]);
+    PortEdit.Enabled := False;
+    Log.Write(sWaitingToReceive, [TextToBeReceivedEthernetEdit.Text,
+      IfThen(ContainsEthernetCheckBox.Checked, sYes, sNo)]);
+  end
+  else
+  begin
+    OpenCloseEthernetButton.Caption := sActivate;
+    LedEthernetShape.Brush.Color := clRed;
+    LedEthernetLabel.Caption := sDeactivated;
+    ConnectedIPLabel.Caption := sConnectedIPNone;
+    PortEdit.Enabled := True;
+    Log.WriteHeader(sEthernetDeactivated, [ServerSocket1.Port]);
+  end;
+  Ethernet := AActivated;
+end;
+
+procedure TMainForm.WriteEthernet(AMsg: AnsiString; ASocket: TCustomWinSocket);
+begin
+  ASocket.SendText(AMsg);
+  Log.Write(sSentViaEthernet, [AMsg]);
+end;
+
+procedure TMainForm.WriteSerial(AMsg: AnsiString);
+begin
+  ApdComPort1.Output := AMsg;
+  Log.Write(sSentViaSerial, [AMsg]);
+end;
+
+procedure TMainForm.PrepareRunMode;
+begin
+  if FindCmdLineSwitch(SPECIAL_MODE_PARAM) then
+    RunMode := rmSpecial
+  else
+    RunMode := rmNormal;
+
+  if RunMode = rmSpecial then
+    Self.Caption := Format(sSpecialMode, [Self.Caption]);
+end;
+
+procedure TMainForm.ApdComPort1TriggerAvail(CP: TObject; Count: Word);
+var
+  i: Word;
+  c: AnsiChar;
+  s: AnsiString;
+begin
+  s := AnsiEmptyStr;
+  for i := 1 to Count do
+  begin
+    c := ApdComPort1.GetChar;
+    if c in [#1..#126] then
+      s := s + c;
+  end;
+
+  if SpecifySizeSerialCheckBox.Checked then
+  begin
+    FReceivedMsg := FReceivedMsg + s;
+    if Length(FReceivedMsg) < StrToInt(SpecifySizeSerialEdit.Text) then
+      Exit;
+
+    s := FReceivedMsg;
+    FReceivedMsg := AnsiEmptyStr;
+  end;
+
+  Log.Write(sReceivedViaSerial, [s]);
+
+  if RunMode = rmNormal then
+    ReadNormalModeSerial(s)
+  else
+    ReadSpecialModeSerial(s);
+end;
+
+procedure TMainForm.ClearMonitorButtonClick(Sender: TObject);
+begin
+  MonitorMemo.Lines.Clear;
+end;
+
+procedure TMainForm.ConfigSerialButtonClick(Sender: TObject);
+begin
+  with TSerialConfigForm.Create(Application) do
+  try
+    ShowModal;
+  finally
+    Free;
+  end;
+end;
+
+procedure TMainForm.FormCreate(Sender: TObject);
+begin
+  Self.Caption := Format('%s %s', [Self.Caption, FileVersion]);
+  PrepareRunMode;
+
+  FLog := TLogFacade.Create;
+  FLog.AddMemo(MonitorMemo);
+
+  FFactory := TForecourtFactory.Create;
+  FFactory.ItemsOwner := Self;
+end;
+
+procedure TMainForm.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(FLog);
+  FreeAndNil(FFactory);
+  FreeAndNil(FForecourt);
+end;
+
+procedure TMainForm.FormShow(Sender: TObject);
+begin
+  MainPageControl.ActivePage := EthernetTabSheet;
+  FSerialText := EmptyStr;
+  FEthernetText := EmptyStr;
+  FReceivedMsg := AnsiEmptyStr;
+end;
+
+function TMainForm.GetReplyFromForecourt(AReceivedText: AnsiString): String;
+var
+  i: Byte;
+begin
+  Result := EmptyStr;
+  for i := 1 to Factory.Count do
+  begin
+    Forecourt := Factory.NextInstance;
+    Result := Forecourt.GetReply(String(AReceivedText));
+    if not SameText(Result, EmptyStr) then
+      Break;
+  end;
+end;
+
+procedure TMainForm.OpenCloseEthernetButtonClick(Sender: TObject);
+var
+  port: Integer;
+begin
+  try
+    if ServerSocket1.Active then
+      SetEthernetComponents(False)
+    else
+    begin
+      if not TryStrToInt(PortEdit.Text, port) then
+      begin
+        ShowMessage(sInvalidPort);
+        Exit;
+      end;
+
+      ServerSocket1.Port := port;
+
+      SetEthernetComponents(True);
+    end;
+
+    ServerSocket1.Active := not ServerSocket1.Active;
+  finally
+    Application.ProcessMessages;
+  end;
+end;
+
+procedure TMainForm.OpenCloseSerialButtonClick(Sender: TObject);
+var
+  com: Integer;
+begin
+  try
+    if ApdComPort1.Open then
+      SetSerialComponents(False)
+    else
+    begin
+      if not TryStrToInt(COMEdit.Text, com) then
+      begin
+        ShowMessage(sInvalidCOM);
+        Exit;
+      end;
+      ApdComPort1.ComNumber := com;
+
+      SetSerialComponents(True);
+    end;
+
+    try
+      ApdComPort1.Open := not ApdComPort1.Open;
+    except
+      on e: EAlreadyOpen do
+      begin
+        SetSerialComponents(False);
+        ShowMessageFmt(sCOMInUse, [com]);
+        Log.Write(sCOMInUse, [com]);
+      end;
+
+      on e: EBadId do
+      begin
+        SetSerialComponents(False);
+        ShowMessageFmt(sCOMDoesntExist, [com]);
+        Log.Write(sCOMDoesntExist, [com]);
+      end;
+    end;
+  finally
+    Application.ProcessMessages;
+  end;
+end;
+
+procedure TMainForm.ServerSocket1ClientConnect(Sender: TObject;
+  Socket: TCustomWinSocket);
+begin
+  ConnectedIPLabel.Caption := sConnectedIP + Socket.RemoteAddress;
+  Application.ProcessMessages;
+end;
+
+procedure TMainForm.ServerSocket1ClientDisconnect(Sender: TObject;
+  Socket: TCustomWinSocket);
+begin
+  ConnectedIPLabel.Caption := sConnectedIPNone;
+  Application.ProcessMessages;
+end;
+
+procedure TMainForm.ServerSocket1ClientRead(Sender: TObject;
+  Socket: TCustomWinSocket);
+var
+  text: AnsiString;
+begin
+  text := Socket.ReceiveText;
+  Log.Write(sReceivedViaEthernet, [text]);
+  if RunMode = rmSpecial then
+    ReadSpecialModeEthernet(text, Socket)
+  else
+    ReadNormalModeEthernet(text, Socket);
+end;
+
+procedure TMainForm.SetRunMode(const AValue: TRunMode);
+begin
+  FRunMode := AValue;
+
+  SetEthernet(FRunMode = rmNormal);
+  SetSerial(FRunMode = rmNormal);
+end;
+
+procedure TMainForm.ReadNormalModeEthernet(AReceivedText: AnsiString;
+  ASocket: TCustomWinSocket);
+var
+  toBeReceived: String;
+begin
+  toBeReceived := Trim(TextToBeReceivedEthernetEdit.Text);
+  if ContainsEthernetCheckBox.Checked then
+  begin
+    if not AnsiContainsStr(String(AReceivedText), toBeReceived) then
+      Exit;
+  end
+  else if not AnsiSameText(String(AReceivedText), toBeReceived) then
+    Exit;
+
+  WriteEthernet(AnsiString(Trim(ReplyEthernetMemo.Text)), ASocket);
+end;
+
+procedure TMainForm.ReadNormalModeSerial(AReceivedText: AnsiString);
+var
+  toBeReceived: String;
+begin
+  toBeReceived := Trim(TextToBeReceivedSerialEdit.Text);
+  if ContainsSerialCheckBox.Checked then
+  begin
+    if not AnsiContainsStr(String(AReceivedText), toBeReceived) then
+      Exit;
+  end
+  else if not AnsiSameText(String(AReceivedText), toBeReceived) then
+    Exit;
+
+  WriteSerial(AnsiString(Trim(ReplySerialMemo.Text)));
+end;
+end.

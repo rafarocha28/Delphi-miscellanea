@@ -1,0 +1,22 @@
+unit Log.Fuel;
+
+interface
+
+uses Log.Abstract;
+
+type
+  TPFCBILogFuel = class(TPFCBILog)
+  public
+    constructor Create;
+  end;
+
+implementation
+
+{ TPFCBILogFuellings }
+
+constructor TPFCBILogFuel.Create;
+begin
+  FileProperties.Modifier := 'ABASTECIMENTOS';
+end;
+
+end.

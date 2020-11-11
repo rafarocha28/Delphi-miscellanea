@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2016/12/12 10:53:59.000.492,=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2016/12/12 10:54:30.000.864,C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\Projetos\ParamTest\src\ParamTest.Constants.pas</Transaction>
+    <Transaction>2016/12/12 10:55:25.000.079,C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Projetos\ParamTest\ParamTest.dproj</Transaction>
+    <Transaction>2016/12/13 14:05:26.000.409,=D:\Projetos\ParamTest\Unit1.pas</Transaction>
+    <Transaction>2016/12/13 14:05:59.000.010,D:\Projetos\ParamTest\src\ParamTest.Thread.WriteFile.pas=D:\Projetos\ParamTest\Unit1.pas</Transaction>
+    <Transaction>2016/12/13 14:16:45.000.880,D:\Projetos\ParamTest\src\ParamTest.Utils.pas=D:\Projetos\ParamTest\src\ParamTest.Constants.pas</Transaction>
+    <Transaction>2016/12/13 14:51:26.000.302,D:\Projetos\ParamTest\src\ParamTest.Thread.Write.pas=D:\Projetos\ParamTest\src\ParamTest.Thread.WriteFile.pas</Transaction>
+  </Transactions>
+</BorlandProject>

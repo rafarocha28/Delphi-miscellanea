@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2016/11/04 14:01:26.000.718,D:\Projetos\EndianSwap\project\EndianSwap.dproj=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2016/11/04 14:28:59.000.714,=D:\Projetos\EndianSwap\project\Unit1.pas</Transaction>
+    <Transaction>2016/11/04 14:29:19.000.328,D:\Projetos\EndianSwap\src\EndianSwap.Routines.pas=D:\Projetos\EndianSwap\project\Unit1.pas</Transaction>
+    <Transaction>2016/11/04 14:31:19.000.547,=D:\Projetos\EndianSwap\project\Unit1.pas</Transaction>
+    <Transaction>2016/11/04 14:32:14.000.921,D:\Projetos\EndianSwap\src\EndianSwap.Utils.pas=D:\Projetos\EndianSwap\src\EndianSwap.Routines.pas</Transaction>
+    <Transaction>2016/11/04 14:38:01.000.996,=D:\Projetos\EndianSwap\project\Unit1.pas</Transaction>
+    <Transaction>2016/11/04 14:38:19.000.138,D:\Projetos\EndianSwap\src\EndianSwap.Constants.pas=D:\Projetos\EndianSwap\project\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,18 @@
+15:26:48:641 | Info  | **************************************************
+15:26:48:645 | Info  | Comunicação via ethernet ativada na porta 1234
+15:26:48:645 | Info  | **************************************************
+15:26:48:646 | Info  | Esperando receber "I201" (apenas contido na mensagem: sim)
+15:27:21:524 | Info  | Recebido via ethernet: SSH-2.0-PuTTY_Release_0.67<#13><#10>
+15:27:37:928 | Info  | **************************************************
+15:27:37:931 | Info  | Comunicação via ethernet desativada na porta 1234
+15:27:37:931 | Info  | **************************************************
+15:27:38:312 | Info  | **************************************************
+15:27:38:314 | Info  | Comunicação via ethernet ativada na porta 1234
+15:27:38:314 | Info  | **************************************************
+15:27:38:315 | Info  | Esperando receber "I201" (apenas contido na mensagem: sim)
+15:27:54:434 | Info  | Recebido via ethernet: ÿûÿû ÿûÿû'ÿýÿûÿý
+15:28:01:039 | Info  | Recebido via ethernet: I201<#13><#10>
+15:28:01:041 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:43<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ	PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1	Etanol Comum	3662	3647	26956	451.5		24<#10>
+15:30:29:775 | Info  | **************************************************
+15:30:29:777 | Info  | Comunicação via ethernet desativada na porta 1234
+15:30:29:778 | Info  | **************************************************

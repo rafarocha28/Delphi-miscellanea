@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/01/16 09:41:48.000.575,D:\Projetos\SDQC\project\LV.Util.HH.pas=D:\Projetos\SDQC\project\Util.HH.pas</Transaction>
+    <Transaction>2017/05/04 12:35:41.000.656,D:\Projetos\SDQC\project\Unit1.pas=D:\Projetos\SDQC\source\SDQC.pas</Transaction>
+    <Transaction>2017/05/04 12:35:50.000.125,D:\Projetos\SDQC\source\SDQC.Config=D:\Projetos\SDQC\source\SDQC.Config.Config</Transaction>
+    <Transaction>2017/05/04 13:07:44.000.059,D:\Projetos\SDQC\project\Unit1.pas=D:\Projetos\SDQC\source\SDQC.View.SeriaConfig.pas</Transaction>
+    <Transaction>2017/05/04 13:07:44.000.059,D:\Projetos\SDQC\project\Unit1.dfm=D:\Projetos\SDQC\source\SDQC.View.SeriaConfig.dfm</Transaction>
+    <Transaction>2017/05/04 13:07:50.000.440,D:\Projetos\SDQC\source\SDQC.View.SeriaConfig.dfm=D:\Projetos\SDQC\source\SDQC.View.SerialConfig.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

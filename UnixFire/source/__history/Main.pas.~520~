@@ -1,0 +1,613 @@
+unit Main;
+
+interface
+
+uses
+  Winapi.Windows,
+  WinSvc,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Phys.FB,
+  FireDAC.Phys.FBDef,
+  FireDAC.VCLUI.Wait,
+  FireDAC.Stan.Param,
+  FireDAC.DatS,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
+  UniProvider,
+  InterBaseUniProvider,
+  Data.DB,
+  MemDS,
+  DBAccess,
+  Uni,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+  fs_synmemo,
+  FireDAC.Phys.IBBase,
+  Vcl.ExtCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.StdCtrls,
+  Vcl.ComCtrls;
+
+type
+  THackDataSet = class(TDataSet);
+  TDac = (dacFireDac, dacUniDac);
+
+  TResult = record
+    Time: Cardinal;
+    Memory: NativeUInt;
+  private
+    function GetMemCount: NativeUInt;
+  public
+    procedure Init;
+    procedure Done;
+    function Milliseconds: string;
+    function Bytes: string;
+  end;
+
+  TMainForm = class(TForm)
+    UniConnection1: TUniConnection;
+    FDConnection1: TFDConnection;
+    FDQuery1: TFDQuery;
+    UniQuery1: TUniQuery;
+    InterBaseUniProvider1: TInterBaseUniProvider;
+    FDPhysFBDriverLink1: TFDPhysFBDriverLink;
+    FireDacButton: TButton;
+    UniDacButton: TButton;
+    ClearButton: TButton;
+    ResultListView: TListView;
+    FDTransaction1: TFDTransaction;
+    UniTransaction1: TUniTransaction;
+    transMasterUpdate: TUniTransaction;
+    LogMemo: TMemo;
+    BothButton: TButton;
+    TimeCheckBox: TCheckBox;
+    MemoCheckBox: TCheckBox;
+    SaveButton: TButton;
+    FileSaveDialog: TFileSaveDialog;
+    procedure TestClick(Sender: TObject);
+    procedure ClearButtonClick(Sender: TObject);
+    procedure BothButtonClick(Sender: TObject);
+    procedure UniDacButtonClick(Sender: TObject);
+    procedure FireDacButtonClick(Sender: TObject);
+    procedure Changed(Sender: TObject);
+    procedure SaveButtonClick(Sender: TObject);
+  private
+    { Private declarations }
+    FConnection: TObject;
+    FDataSet: TDataSet;
+    FTransaction: TObject;
+    FServices: TStringList;
+    FServer: string;
+    FPort: Integer;
+    FDatabase: string;
+    FUsername: string;
+    FPassword: string;
+    function GetSQL: string;
+    procedure SetSQL(const Value: string);
+    function ConnectFireDac: TResult;
+    function ConnectUniDac: TResult;
+    function ResetFirebird: TResult;
+    function Connect(const ADac: TDac): TResult;
+    function Disconnect: TResult;
+    property SQL: string read GetSQL write SetSQL;
+    function Open(const ASQL: string): TResult;
+    function Execute(const ASQL: string): TResult;
+    function Close: TResult;
+    procedure InitResultListView;
+    procedure LoadIni;
+    function Commit: TResult;
+  public
+    { Public declarations }
+    constructor Create(AOnwer: TComponent); override;
+    destructor Destroy; override;
+    procedure ExecuteTests(const ADac: TDac);
+  end;
+
+var
+  MainForm: TMainForm;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  WinService,
+  DateUtils,
+  IniFiles,
+  StrUtils;
+
+const
+  INI_SERVICES = 'SERVICES';
+  INI_COUNT = 'ServiceCount';
+  INI_ITEM = 'Service[%d]';
+
+  INI_CONNECTION = 'CONNECTION';
+  INI_SERVER = 'Server';
+  INI_PORT = 'Port';
+  INI_DATABASE = 'Database';
+  INI_USERNAME = 'Username';
+  INI_PASSWORD = 'Password';
+
+  { TResult }
+
+function TResult.Bytes: string;
+begin
+  Result := FormatFloat('###,###,###,###,##0', Memory);
+end;
+
+procedure TResult.Done;
+begin
+  Time := GetTickCount - Time;
+  Memory := Abs(Abs(GetMemCount) - Abs(Memory)); // TODO: BUG????
+end;
+
+function TResult.GetMemCount: NativeUInt;
+var
+  st: TMemoryManagerState;
+  sb: TSmallBlockTypeState;
+begin
+  GetMemoryManagerState(st);
+  Result := st.TotalAllocatedMediumBlockSize + st.TotalAllocatedLargeBlockSize;
+  for sb in st.SmallBlockTypeStates do
+    Result := Result + sb.UseableBlockSize * sb.AllocatedBlockCount;
+end;
+
+procedure TResult.Init;
+begin
+  Time := GetTickCount;
+  Memory := GetMemCount;
+end;
+
+function TResult.Milliseconds: string;
+begin
+  Result := FormatFloat('###,###,###,###,##0', Time);
+end;
+
+{ TForm1 }
+
+procedure TMainForm.BothButtonClick(Sender: TObject);
+begin
+  ExecuteTests(dacFireDac);
+  ExecuteTests(dacUniDac);
+end;
+
+procedure TMainForm.Changed(Sender: TObject);
+begin
+  with FireDacButton do
+  begin
+    Enabled := TimeCheckBox.Checked or MemoCheckBox.Checked;
+    UniDacButton.Enabled := Enabled;
+    BothButton.Enabled := Enabled;
+  end;
+end;
+
+procedure TMainForm.ClearButtonClick(Sender: TObject);
+begin
+  InitResultListView;
+  LogMemo.Clear;
+  ClearButton.Enabled := False;
+end;
+
+function TMainForm.Close: TResult;
+begin
+  Result.Init;
+  try
+    FDataSet.Close;
+  finally
+    Result.Done;
+  end;
+end;
+
+function TMainForm.Commit: TResult;
+begin
+  Result.Init;
+  try
+    if FTransaction is TFDTransaction then
+    begin
+      with FTransaction as TFDTransaction do
+        if Active then
+          Commit;
+    end
+    else if FTransaction is TUniTransaction then
+    begin
+      with FTransaction as TUniTransaction do
+        if Active then
+          Commit;
+    end;
+  finally
+    Result.Done;
+  end;
+end;
+
+function TMainForm.Connect(const ADac: TDac): TResult;
+begin
+  Disconnect;
+  case ADac of
+    dacFireDac:
+      Result := ConnectFireDac;
+    dacUniDac:
+      Result := ConnectUniDac;
+  end;
+end;
+
+function TMainForm.ConnectFireDac: TResult;
+begin
+  FConnection := TFDConnection.Create(Self);
+  with FConnection as TFDConnection do
+  begin
+    DriverName := 'FB';
+    Params.Values['DriverID'] := 'FB';
+    Params.Values['Server'] := FServer;
+    Params.Values['Port'] := FPort.ToString;
+    Params.Values['Database'] := FDatabase;
+    Params.Values['User_Name'] := FUsername;
+    Params.Values['Password'] := FPassword;
+    Params.Values['CharacterSet'] := 'WIN1252';
+    Result.Init;
+    try
+      Connected := True;
+    finally
+      Result.Done;
+    end;
+  end;
+
+  FTransaction := TFDTransaction.Create(Self);
+  with FTransaction as TFDTransaction do
+  begin
+    Connection := FConnection as TFDConnection;
+  end;
+
+  FDataSet := TFDQuery.Create(Self);
+  with FDataSet as TFDQuery do
+  begin
+    Connection := FConnection as TFDConnection;
+    // FetchOptions.RecsMax := 65535;
+    Transaction := FTransaction as TFDTransaction;
+    FetchOptions.Cache := [];
+  end;
+end;
+
+function TMainForm.ConnectUniDac: TResult;
+begin
+  FConnection := TUniConnection.Create(Self);
+  with FConnection as TUniConnection do
+  begin
+    ProviderName := 'InterBase';
+    Server := FServer;
+    Port := FPort;
+    Database := FDatabase;
+    Username := FUsername;
+    Password := FPassword;
+    SpecificOptions.Values['InterBase.Charset'] := 'WIN1252';
+    Result.Init;
+    try
+      Connected := True;
+    finally
+      Result.Done;
+    end;
+  end;
+
+  FTransaction := TUniTransaction.Create(Self);
+  with FTransaction as TUniTransaction do
+  begin
+    DefaultConnection := FConnection as TUniConnection;
+  end;
+
+  FDataSet := TUniQuery.Create(Self);
+  with FDataSet as TUniQuery do
+  begin
+    Connection := FConnection as TUniConnection;
+    // FetchRows := 65535;
+    Transaction := FTransaction as TUniTransaction;
+  end;
+end;
+
+constructor TMainForm.Create(AOnwer: TComponent);
+begin
+  inherited;
+  FConnection := nil;
+  FDataSet := nil;
+  FTransaction := nil;
+  FServices := TStringList.Create;
+  LoadIni;
+  InitResultListView;
+end;
+
+destructor TMainForm.Destroy;
+begin
+  Disconnect;
+  FreeAndNil(FServices);
+  inherited;
+end;
+
+function TMainForm.Disconnect: TResult;
+begin
+  Result.Init;
+  try
+    if Assigned(FDataSet) then
+      FreeAndNil(FDataSet);
+    if Assigned(FConnection) then
+      FreeAndNil(FConnection);
+  finally
+    Result.Done;
+  end;
+end;
+
+function TMainForm.Execute(const ASQL: string): TResult;
+begin
+  Result.Init;
+  try
+    SQL := ASQL;
+    THackDataSet(FDataSet).PSExecute;
+  finally
+    Result.Done;
+  end;
+end;
+
+procedure TMainForm.ExecuteTests(const ADac: TDac);
+var
+  i: Integer;
+  r: TResult;
+  SaveCursor: TCursor;
+  HasTime: Boolean;
+  HasMemo: Boolean;
+  TimeIndex: Integer;
+  MemoIndex: Integer;
+
+  function AddColumn(AFormat: string): Integer;
+  const
+    DacAsString: array [TDac] of string = ('FireDac', 'UniDac');
+  begin
+    with ResultListView.Columns.Add do
+    begin
+      Caption := Format(AFormat, [DacAsString[ADac]]);
+      Alignment := taRightJustify;
+      Width := 100;
+      Result := Pred(Index);
+    end;
+  end;
+
+begin
+  SaveCursor := Screen.Cursor;
+  Screen.Cursor := crHourGlass;
+  try
+    HasTime := TimeCheckBox.Checked;
+    HasMemo := MemoCheckBox.Checked;
+    if HasTime then
+      TimeIndex := AddColumn('%s(ms)');
+    if HasMemo then
+      MemoIndex := AddColumn('%s(bytes)');
+    ResetFirebird;
+    Connect(ADac);
+    try
+      for i := 0 to Pred(ResultListView.Items.Count) do
+      begin
+        ResultListView.Selected := ResultListView.Items[i];
+        with ResultListView.Selected do
+          try
+            if HasTime then
+              SubItems.Add('');
+            if HasMemo then
+              SubItems.Add('');
+            MakeVisible(False);
+            if SubItems[0] = 'OPEN' then
+              r := Open(Caption)
+            else
+              r := Execute(Caption);
+            if HasTime then
+              SubItems[TimeIndex] := r.Milliseconds;
+            if HasMemo then
+              SubItems[MemoIndex] := r.Bytes;
+          except
+            on e: Exception do
+            begin
+              LogMemo.Lines.Add(Caption);
+              LogMemo.Lines.Add(e.Message);
+              LogMemo.Lines.Add('');
+              if HasTime then
+                SubItems[TimeIndex] := 'Error';
+              if HasMemo then
+                SubItems[MemoIndex] := 'Error';
+            end;
+          end;
+        ResultListView.Invalidate;
+        Application.ProcessMessages;
+      end;
+    finally
+      Disconnect;
+    end;
+  finally
+    ClearButton.Enabled := True;
+    Screen.Cursor := SaveCursor;
+  end;
+end;
+
+procedure TMainForm.FireDacButtonClick(Sender: TObject);
+begin
+  ExecuteTests(dacFireDac);
+end;
+
+function TMainForm.GetSQL: string;
+begin
+  THackDataSet(FDataSet).PSGetCommandText;
+end;
+
+procedure TMainForm.InitResultListView;
+var
+  i: Integer;
+  SQL: TStringList;
+
+  procedure AddColumn(ACaption: string; AWidth: Integer);
+  begin
+    with ResultListView.Columns.Add do
+    begin
+      Caption := ACaption;
+      Width := AWidth;
+    end;
+  end;
+
+begin
+  with ResultListView do
+  begin
+    Items.Clear;
+    Columns.Clear;
+    AddColumn('Command', 400);
+    AddColumn('Type', 48);
+    SQL := TStringList.Create;
+    try
+      SQL.LoadFromFile(ChangeFileExt(Application.ExeName, '.sql'));
+      for i := Items.Count to Pred(SQL.Count) do
+      begin
+        with Items.Add do
+        begin
+          Caption := SQL[i];
+          if Copy(AnsiUpperCase(Trim(Caption)), 1, 6) = 'SELECT' then
+            SubItems.Add('OPEN')
+          else
+            SubItems.Add('EXEC');
+        end;
+      end;
+    finally
+      SQL.Free;
+    end;
+  end;
+end;
+
+procedure TMainForm.LoadIni;
+var
+  Count: Integer;
+  i: Integer;
+  item: string;
+begin
+  with TIniFile.Create(ChangeFileExt(Application.ExeName, '.ini')) do
+    try
+      Count := ReadInteger(INI_SERVICES, INI_COUNT, 0);
+      for i := 0 to Pred(Count) do
+      begin
+        item := ReadString(INI_SERVICES, Format(INI_ITEM, [i]), '');
+        if item <> '' then
+          FServices.Add(item);
+      end;
+      FServer := ReadString(INI_CONNECTION, INI_SERVER, 'localhost');
+      FPort := ReadInteger(INI_CONNECTION, INI_PORT, 3050);
+      FDatabase := ReadString(INI_CONNECTION, INI_DATABASE, 'PFWIN');
+      FUsername := ReadString(INI_CONNECTION, INI_USERNAME, 'SYSDBA');
+      FPassword := ReadString(INI_CONNECTION, INI_PASSWORD, 'masterkey');
+    finally
+      Free;
+    end;
+end;
+
+function TMainForm.Open(const ASQL: string): TResult;
+begin
+  Result.Init;
+  try
+    SQL := ASQL;
+    FDataSet.Open;
+    FDataSet.Last;
+  finally
+    Result.Done;
+  end;
+end;
+
+function TMainForm.ResetFirebird: TResult;
+var
+  service: string;
+begin
+  Result.Init;
+  try
+    for service in FServices do
+      Restart(service);
+  finally
+    Result.Done;
+  end;
+end;
+
+procedure TMainForm.SaveButtonClick(Sender: TObject);
+var
+  csv: TStringList;
+  line: string;
+const
+  comma = ';';
+  quote = '''';
+
+  procedure concat(s: string);
+  begin
+    if line <> '' then
+      line := line + comma;
+    if Pos(comma, s) + Pos(quote, s) > 0 then
+    begin
+      s := AnsiReplaceText(s, quote, quote + quote);
+      s := quote + s + quote;
+    end;
+    line := line + s;
+  end;
+
+var
+  i: Integer;
+  j: Integer;
+begin
+  if FileSaveDialog.Execute then
+  begin
+    csv := TStringList.Create;
+    try
+      with ResultListView do
+      begin
+        line := '';
+        for i := 0 to Pred(Columns.Count) do
+          concat(Columns[i].Caption);
+        csv.Add(line);
+
+        for i := 0 to Pred(Items.Count) do
+          with Items[i] do
+          begin
+            line := '';
+            concat(Caption);
+            for j := 0 to Pred(SubItems.Count) do
+              concat(SubItems[j]);
+            csv.Add(line);
+          end;
+      end;
+      csv.SaveToFile(FileSaveDialog.FileName);
+    finally
+      csv.Free;
+    end;
+  end;
+end;
+
+procedure TMainForm.SetSQL(const Value: string);
+begin
+  THackDataSet(FDataSet).PSSetCommandText(Value);
+end;
+
+procedure TMainForm.TestClick(Sender: TObject);
+begin
+  ExecuteTests(dacUniDac);
+  ExecuteTests(TDac(TControl(Sender).Tag));
+end;
+
+procedure TMainForm.UniDacButtonClick(Sender: TObject);
+begin
+  ExecuteTests(dacUniDac);
+end;
+
+end.
+{ CREATE TABLE UNIXFIRE(ID INTEGER, NOME VARCHAR(20), INCLUSAO TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+  DROP TABLE UNIXFIRE;

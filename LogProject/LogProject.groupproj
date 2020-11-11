@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{1D2736D1-8CB9-4338-B37B-D6B6FE631EA5}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="src\LogTest.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="LogTest">
+        <MSBuild Projects="src\LogTest.dproj"/>
+    </Target>
+    <Target Name="LogTest:Clean">
+        <MSBuild Projects="src\LogTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="LogTest:Make">
+        <MSBuild Projects="src\LogTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="LogTest"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="LogTest:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="LogTest:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

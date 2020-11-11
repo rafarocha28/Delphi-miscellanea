@@ -1,0 +1,144 @@
+object SerialConfigForm: TSerialConfigForm
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Serial configuration'
+  ClientHeight = 309
+  ClientWidth = 645
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Padding.Left = 4
+  Padding.Top = 4
+  Padding.Right = 4
+  Padding.Bottom = 4
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object SerialConfigGroupBox: TGroupBox
+    Left = 7
+    Top = 7
+    Width = 362
+    Height = 162
+    Caption = 'SerialConfigGroupBox'
+    TabOrder = 0
+    object ComNumberLabel: TLabel
+      Left = 11
+      Top = 16
+      Width = 23
+      Height = 13
+      Caption = 'COM'
+      FocusControl = ComNumberCombo
+    end
+    object BaudRateLabel: TLabel
+      Left = 11
+      Top = 62
+      Width = 47
+      Height = 13
+      Caption = 'Baud rate'
+      FocusControl = BaudRateCombo
+    end
+    object DataBitsLabel: TLabel
+      Left = 117
+      Top = 16
+      Width = 43
+      Height = 13
+      Caption = 'Data bits'
+      FocusControl = DataBitsCombo
+    end
+    object ParityLabel: TLabel
+      Left = 11
+      Top = 108
+      Width = 28
+      Height = 13
+      Caption = 'Parity'
+      FocusControl = ParityCombo
+    end
+    object StopBitsLabel: TLabel
+      Left = 117
+      Top = 62
+      Width = 42
+      Height = 13
+      Caption = 'Stop bits'
+      FocusControl = StopBitsCombo
+    end
+    object SWFlowOptions: TLabel
+      Left = 117
+      Top = 108
+      Width = 67
+      Height = 13
+      Caption = 'Software flow'
+      FocusControl = FlowOptionsCombo
+    end
+    object HWFlowLabel: TLabel
+      Left = 223
+      Top = 16
+      Width = 108
+      Height = 13
+      Caption = 'Hardware flow options'
+    end
+    object ComNumberCombo: TComboBox
+      Left = 11
+      Top = 35
+      Width = 100
+      Height = 21
+      Style = csDropDownList
+      DropDownCount = 12
+      TabOrder = 0
+    end
+    object BaudRateCombo: TComboBox
+      Left = 11
+      Top = 81
+      Width = 100
+      Height = 21
+      Style = csDropDownList
+      DropDownCount = 12
+      TabOrder = 1
+    end
+    object DataBitsCombo: TComboBox
+      Left = 117
+      Top = 35
+      Width = 100
+      Height = 21
+      Style = csDropDownList
+      TabOrder = 2
+    end
+    object ParityCombo: TComboBox
+      Left = 11
+      Top = 127
+      Width = 100
+      Height = 21
+      Style = csDropDownList
+      TabOrder = 3
+    end
+    object StopBitsCombo: TComboBox
+      Left = 117
+      Top = 81
+      Width = 100
+      Height = 21
+      Style = csDropDownList
+      TabOrder = 4
+    end
+    object FlowOptionsCombo: TComboBox
+      Left = 117
+      Top = 127
+      Width = 100
+      Height = 21
+      Style = csDropDownList
+      TabOrder = 5
+    end
+    object HWFlowOptionsCheckListBox: TCheckListBox
+      Left = 223
+      Top = 35
+      Width = 121
+      Height = 113
+      ItemHeight = 13
+      TabOrder = 6
+    end
+  end
+end

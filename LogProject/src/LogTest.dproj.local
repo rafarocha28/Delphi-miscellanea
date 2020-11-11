@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/05/17 10:34:47.000.566,=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/05/18 09:14:56.000.103,=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/05/18 09:15:39.000.336,C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\LP.MainForm.pas</Transaction>
+    <Transaction>2017/05/18 09:15:39.000.336,C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\LP.MainForm.dfm</Transaction>
+    <Transaction>2017/05/18 09:16:07.000.496,C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\LogProject.dproj</Transaction>
+    <Transaction>2017/05/18 09:16:36.000.105,C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\LogProject.dproj=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\LogTest.dproj</Transaction>
+    <Transaction>2017/05/18 09:19:45.000.083,=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Unit1.pas</Transaction>
+    <Transaction>2017/05/18 09:20:55.000.913,=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Log.Level.pas</Transaction>
+    <Transaction>2017/05/18 09:20:55.000.898,=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Log.Intf.pas</Transaction>
+    <Transaction>2017/05/18 09:34:35.000.101,=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Unit1.pas</Transaction>
+    <Transaction>2017/05/18 09:35:25.000.023,C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Unit1.pas=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Log.Abstract.pas</Transaction>
+    <Transaction>2017/05/18 10:44:32.000.161,=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Unit1.pas</Transaction>
+    <Transaction>2017/05/18 10:47:41.000.250,C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Unit1.pas=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Log.Exceptions.pas</Transaction>
+    <Transaction>2017/05/18 15:41:00.000.666,=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Unit1.pas</Transaction>
+    <Transaction>2017/05/18 15:44:22.000.939,C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Unit1.pas=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Log.Fuel.pas</Transaction>
+    <Transaction>2017/05/18 15:46:24.000.395,=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Unit1.pas</Transaction>
+    <Transaction>2017/05/18 15:54:09.000.084,C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Unit1.pas=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\Log.Geral.pas</Transaction>
+    <Transaction>2017/05/19 08:22:23.266,=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\LogProject\src\AsyncCalls.pas</Transaction>
+  </Transactions>
+</BorlandProject>

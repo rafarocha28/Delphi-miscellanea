@@ -1,0 +1,24 @@
+unit SDQC.Config;
+
+interface
+
+type
+  {$SCOPEDENUMS ON}
+  TSDQCParity = (None, Odd, Even, Mark, Space);
+  TSDQCHardwareFlow = (UseDTR, UseRTS, RequireDSR, RequireCTS);
+  TSDQCSoftwareFlow = (None, Receive, Transmit, Both);
+  {$SCOPEDENUMS OFF}
+
+  TSerialConfiguration = record
+    ComNumber: Word;
+    BaudRate: Cardinal;
+    DataBits: Word;
+    Parity: TSDQCParity;
+    StopBits: Word;
+    HWFlowOptions: TSDQCHardwareFlow;
+    SWFlowOptions: TSDQCSoftwareFlow;
+  end;
+
+implementation
+
+end.

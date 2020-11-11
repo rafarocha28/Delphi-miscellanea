@@ -1,0 +1,22 @@
+unit Log.Intf;
+
+interface
+
+uses
+  Log.Level;
+
+type
+  ILog = interface
+    ['{44A3871E-897C-44A0-A986-99B2CFE35FF6}']
+    procedure Write(const AMessage: string; const ALogType: TLogType); overload;
+    procedure Write(const AMessage: String; const Args: array of const;
+      const ALogType: TLogType); overload;
+    procedure Write(const AMessage: String); overload;
+    procedure Write(const AMessage: String;
+      const Args: array of const); overload;
+
+  end;
+
+implementation
+
+end.

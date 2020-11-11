@@ -1,0 +1,17 @@
+// Helping hands
+unit LV.Util.HH;
+
+interface
+
+function IsEmpty(AString: String; ATrim: Boolean = True): Boolean;
+
+implementation
+
+function IsEmpty(AString: String; ATrim: Boolean = True): Boolean;
+begin
+  if ATrim then
+    AString := Trim(AString);
+  Result := SameText(AString, EmptyStr);
+end;
+
+end.

@@ -1,0 +1,14 @@
+program SSS;
+
+uses
+  Vcl.Forms,
+  SSS.MainForm in '..\SSS.MainForm.pas' {MainForm};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TMainForm, MainForm);
+  Application.Run;
+end.

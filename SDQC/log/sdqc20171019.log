@@ -1,0 +1,38 @@
+10:37:37:484 | Info  | **************************************************
+10:37:37:488 | Info  | Comunicação via ethernet ativada na porta 10001
+10:37:37:489 | Info  | **************************************************
+10:37:37:489 | Info  | Esperando receber "I201" (apenas contido na mensagem: sim)
+10:38:32:766 | Info  | Recebido via ethernet: i20101
+10:39:10:379 | Info  | **************************************************
+10:39:10:381 | Info  | Comunicação via ethernet desativada na porta 10001
+10:39:10:382 | Info  | **************************************************
+10:39:10:840 | Info  | **************************************************
+10:39:10:842 | Info  | Comunicação via ethernet ativada na porta 10001
+10:39:10:843 | Info  | **************************************************
+10:39:10:843 | Info  | Esperando receber "I201" (apenas contido na mensagem: sim)
+10:40:01:575 | Info  | Recebido via ethernet: I20101
+10:40:01:577 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:43<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ	PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1	Etanol Comum	3662	3647	26956	451.5		24<#10>
+10:42:33:190 | Info  | Recebido via ethernet: I20101
+10:42:33:193 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:43<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ	PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1	Etanol Comum	3662	3647	26956	451.5		24<#10>
+10:47:44:586 | Info  | Recebido via ethernet: I20101
+10:47:44:590 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:43<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ	PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1	Etanol Comum	3662	3647	26956	451.5		24<#10>
+11:32:10:020 | Info  | Recebido via ethernet: I20101
+11:32:10:025 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:43<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ	PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1	Etanol Comum	3662	3647	26956	451.5		24<#10>
+11:34:16:587 | Info  | Recebido via ethernet: I20101
+11:34:16:593 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:43<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ	PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1	Etanol Comum	3662	3647	26956	451.5		24<#10>
+17:19:08:909 | Info  | **************************************************
+17:19:08:925 | Info  | Comunicação via ethernet ativada na porta 10001
+17:19:08:928 | Info  | **************************************************
+17:19:08:930 | Info  | Esperando receber "I201" (apenas contido na mensagem: sim)
+17:20:20:449 | Info  | Recebido via ethernet: I20101
+17:20:20:453 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:43<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ    PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1 Etanol Comum	3662	3647	26956	451.5		24<#10><#13><#10>
+17:22:42:863 | Info  | Recebido via ethernet: I20101
+17:22:42:868 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:43<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ    PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1 Etanol Comum	3662	3647	26956	451.5		24<#10><#13><#10>
+17:24:06:634 | Info  | Recebido via ethernet: I20101
+17:24:06:645 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:43<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ    PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1 Etanol Comum	3662	3647	26956	451.5		24<#10><#13><#10>
+17:25:03:728 | Info  | Recebido via ethernet: I20101
+17:25:03:738 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:43<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ    PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1 Etanol Comum	3662	3647	26956	451.5		24<#10><#13><#10>
+17:26:04:322 | Info  | Recebido via ethernet: I20101
+17:26:04:332 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:43<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ    PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1 Etanol Comum	3662	3647	26956	451.5		24<#10><#13><#10>
+17:27:53:464 | Info  | Recebido via ethernet: I20101
+17:27:53:477 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:43<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ    PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1 Etanol Comum	3662	3647	26956	451.5		24<#10><#13><#10>

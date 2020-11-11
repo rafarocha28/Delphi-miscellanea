@@ -1,0 +1,58 @@
+unit SSS.MainForm;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, OoMisc, AdPort;
+
+type
+  TMainForm = class(TForm)
+    ApdComPort: TApdComPort;
+    SendButton: TButton;
+    ReplyMemo: TMemo;
+    procedure FormShow(Sender: TObject);
+    procedure SendButtonClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    FTankNumber: Byte;
+  protected
+    property TankNumber: Byte read FTankNumber write FTankNumber;
+  public
+    { Public declarations }
+  end;
+
+var
+  MainForm: TMainForm;
+
+implementation
+
+{$R *.dfm}
+
+procedure TMainForm.FormCreate(Sender: TObject);
+begin
+  FTankNumber := 1;
+end;
+
+procedure TMainForm.FormShow(Sender: TObject);
+begin
+  with ApdComPort do
+  begin
+    Baud := 1200;
+    DataBits := 7;
+    Parity := pOdd;
+    StopBits := 1;
+    FlowState := fcOff;
+    Open := True;
+  end;
+end;
+
+procedure TMainForm.SendButtonClick(Sender: TObject);
+begin
+  if FTankNumber > 4 then
+    FTankNumber := 1;
+
+  ApdComPort.se
+end;
+
+end.

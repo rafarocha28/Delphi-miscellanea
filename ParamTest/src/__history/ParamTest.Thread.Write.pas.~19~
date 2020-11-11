@@ -1,0 +1,39 @@
+unit ParamTest.Thread.Write;
+
+interface
+
+uses
+  System.Classes;
+
+type
+  TWrite = class(TThread)
+  protected
+    procedure Execute; override;
+    procedure WriteFile;
+  end;
+
+implementation
+
+{ TWriteFile }
+
+uses
+  System.SysUtils,
+  Vcl.Forms,
+  ParamTest.Utils;
+
+procedure TWrite.Execute;
+begin
+  while not Terminated do
+  begin
+    WriteFile;
+    Sleep(150);
+    Application.ProcessMessages;
+  end;
+end;
+
+procedure TWrite.WriteFile;
+begin
+  Synchronize(WriteIEEE754Volumes('secondary thread'));
+end;
+
+end.

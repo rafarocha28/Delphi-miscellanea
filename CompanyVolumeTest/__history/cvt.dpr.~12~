@@ -1,0 +1,94 @@
+program cvt;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils, System.Math;
+
+function HexDigitToDec(AChar: AnsiChar): integer;
+begin
+  if AChar in ['0'..'9'] then
+    Result := Ord(AChar) - 48
+  else
+    Result := Ord(AChar) - 55;
+end;
+
+function HexToInt(S: AnsiString): integer;
+var
+  i, Tam: integer;
+
+begin
+  Result := 0;
+
+  S :=  AnsiString(AnsiUpperCase( String(S) ));
+
+  Tam := Length(S);
+
+  i := 1;
+
+  while i <= Tam do
+  begin
+    Result := Result + (HexDigitToDec(S[i]) shl 4) +
+      (HexDigitToDec(S[i +1]) and $0F);
+    Inc(i, 2);
+  end;
+end;
+
+procedure DoStuff;
+var
+  s: String;
+
+  qtde,
+  val_total,
+  prc_unitario: currency;
+
+  vv: Integer;
+
+  Qtd_casas_decimais_val_total,
+  Qtd_casas_decimais_qtde,
+  Qtd_casas_decimais_prc_unitario: Integer;
+begin
+  s := '(a2G0005921600126800031340503A00270610130403170233390084339155008433'+
+    '884203020200000000000000000000000000000000000000000072)';
+
+  vv := HexToInt(AnsiString(Copy(S, 29, 02)));
+
+  Qtd_casas_decimais_val_total := (vv and $03);
+  Qtd_casas_decimais_qtde := (vv and $0C) shr 2;
+  Qtd_casas_decimais_prc_unitario := (vv and $30) shr 4;
+
+  Writeln('     CASAS DECIMAIS');
+  Writeln('Qtde         = ', Qtd_casas_decimais_qtde);
+  Writeln('Val_total    = ', Qtd_casas_decimais_val_total);
+  Writeln('Prc_unitario = ', Qtd_casas_decimais_prc_unitario);
+  Writeln;
+  Writeln;
+
+  Qtde := RoundTo(StrToInt64Def(Copy(S, 19, 06), 0) / Power(10,
+        Qtd_casas_decimais_qtde), -Qtd_casas_decimais_qtde);
+  Val_total := RoundTo(StrToInt64Def(Copy(S, 13, 06), 0) / Power(10,
+      Qtd_casas_decimais_val_total), -Qtd_casas_decimais_val_total);
+  Prc_unitario := RoundTo(StrToInt64Def(Copy(S, 25, 04), 0) / Power(10,
+      Qtd_casas_decimais_prc_unitario), -Qtd_casas_decimais_prc_unitario);
+
+  Writeln('     VALORES');
+  Writeln(Format('Qtde         = %.4f', [Qtde]));
+  Writeln(Format('Val_total    = %.4f', [Val_total]));
+  Writeln(Format('Prc_unitario = %.4f', [Prc_unitario]));
+
+  Writeln;
+  Writeln(Format('Qtde recalculada = %.4f',
+    [RoundTo(Val_total / Prc_unitario, -3)]));
+end;
+
+begin
+  try
+    DoStuff;
+    Readln;
+  except
+    on E: Exception do
+      Writeln(E.ClassName, ': ', E.Message);
+  end;
+end.

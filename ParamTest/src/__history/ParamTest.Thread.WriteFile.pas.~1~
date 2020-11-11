@@ -1,0 +1,12 @@
+unit ParamTest.Thread.WriteFile;
+
+interface
+
+type
+  TWriteFileThread = class(TThread)
+
+  end;
+
+implementation
+
+end.

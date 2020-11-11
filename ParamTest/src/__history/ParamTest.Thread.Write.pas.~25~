@@ -1,0 +1,54 @@
+unit ParamTest.Thread.Write;
+
+interface
+
+uses
+  System.Classes;
+
+type
+  TWrite = class(TThread)
+  protected
+    procedure Execute; override;
+    procedure WriteOutput;
+  end;
+
+implementation
+
+{ TWriteFile }
+
+uses
+  System.SysUtils,
+  Vcl.Forms,
+  ParamTest.Utils;
+
+procedure TWrite.Execute;
+begin
+  while not Terminated do
+  begin
+    WriteOutput;
+    WaitAndProcess;
+  end;
+end;
+
+procedure TWrite.WriteOutput;
+begin
+  Synchronize(
+  procedure
+  var
+    i: byte;
+    s, s1: string;
+  begin
+    for i := Low(HexVolumes) to High(HexVolumes) do
+    begin
+      s1 := Format('  %s = %f (secondary thread) %d',
+        [HexVolumes[i], HexIEEE754ToDecimalDouble(HexVolumes[i]), i]);
+
+      s := GetStringWithThreadId(s1);
+
+      Writeln(s);
+      WaitAndProcess;
+    end;
+  end;);
+end;
+
+end.

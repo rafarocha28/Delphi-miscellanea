@@ -1,0 +1,30 @@
+15:22:17:846 | Info  | **************************************************
+15:22:17:850 | Info  | Comunicação via ethernet ativada na porta 1234
+15:22:17:850 | Info  | **************************************************
+15:22:17:851 | Info  | Esperando receber "a" (apenas contido na mensagem: não)
+15:22:43:374 | Info  | **************************************************
+15:22:43:376 | Info  | Comunicação via ethernet desativada na porta 1234
+15:22:43:376 | Info  | **************************************************
+15:23:12:135 | Info  | **************************************************
+15:23:12:137 | Info  | Comunicação via ethernet ativada na porta 4546
+15:23:12:138 | Info  | **************************************************
+15:23:12:139 | Info  | Esperando receber "a" (apenas contido na mensagem: não)
+15:23:45:095 | Info  | **************************************************
+15:23:45:097 | Info  | Comunicação via ethernet desativada na porta 4546
+15:23:45:097 | Info  | **************************************************
+15:54:05:464 | Info  | **************************************************
+15:54:05:467 | Info  | Comunicação via ethernet ativada na porta 1234
+15:54:05:468 | Info  | **************************************************
+15:54:05:468 | Info  | Esperando receber "b" (apenas contido na mensagem: sim)
+15:54:15:566 | Info  | Recebido via ethernet: ÿûÿû ÿûÿû'ÿýÿûÿý
+15:54:28:343 | Info  | Recebido via ethernet: bsdasdad
+15:54:28:344 | Info  | Recebido via ethernet: <#13><#10>
+15:54:28:346 | Info  | Enviado via ethernet: asdadad
+15:54:36:487 | Info  | Recebido via ethernet: b
+15:54:36:488 | Info  | Recebido via ethernet: <#13><#10>
+15:54:36:490 | Info  | Enviado via ethernet: asdadad
+15:55:08:216 | Info  | Recebido via ethernet: sdasdasdasdasdaslolololol
+15:55:08:217 | Info  | Recebido via ethernet: <#13><#10>
+15:55:42:834 | Info  | **************************************************
+15:55:42:836 | Info  | Comunicação via ethernet desativada na porta 1234
+15:55:42:836 | Info  | **************************************************

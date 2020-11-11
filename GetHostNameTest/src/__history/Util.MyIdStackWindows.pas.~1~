@@ -1,0 +1,23 @@
+unit Util.MyIdStackWindows;
+
+interface
+
+uses
+  IdStackWindows;
+
+type
+  TMyIdStackWindows = class(TIdStackWindows)
+  public
+    function GetHostByName(AName: String): String;
+  end;
+
+implementation
+
+{ TMyIdStackWindows }
+
+function TMyIdStackWindows.GetHostByName(AName: String): String;
+begin
+  Result := HostByName(AName);
+end;
+
+end.

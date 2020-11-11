@@ -1,0 +1,41 @@
+unit Log.Geral;
+
+interface
+
+uses
+  Log.Abstract;
+
+type
+  TPFCBILogGeral = class(TPFCBILog)
+  private
+    class var FInstance: TPFCBILogGeral;
+  public
+    class function NewInstance: TObject; override;
+    class function HasInstance: Boolean;
+    destructor Destroy; override;
+  end;
+
+implementation
+
+{ TPFCBILogGeral }
+
+destructor TPFCBILogGeral.Destroy;
+begin
+
+  inherited;
+end;
+
+class function TPFCBILogGeral.HasInstance: Boolean;
+begin
+  Result := FInstance <> nil;
+end;
+
+class function TPFCBILogGeral.NewInstance: TObject;
+begin
+  if not HasInstance then
+    FInstance := inherited NewInstance as TPFCBILogGeral;
+
+  Result := FInstance;
+end;
+
+end.

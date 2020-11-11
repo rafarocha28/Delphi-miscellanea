@@ -1,0 +1,28 @@
+08:15:10:555 | Info  | **************************************************
+08:15:10:558 | Info  | Comunicação via ethernet ativada na porta 10001
+08:15:10:559 | Info  | **************************************************
+08:15:10:559 | Info  | Esperando receber "I201" (apenas contido na mensagem: sim)
+08:16:07:733 | Info  | Recebido via ethernet: I20101
+08:16:07:734 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:44<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ	PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1	Etanol Comum	3662	3647	26956	451.5		24<#10><#13><#10>
+08:36:14:105 | Info  | Recebido via ethernet: I20101
+08:36:14:111 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:44<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ	PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1	Etanol Comum	3662	3647	26956	451.5		24<#10><#13><#10>
+08:40:04:412 | Info  | Recebido via ethernet: I20101
+08:40:04:416 | Info  | Enviado via ethernet: <#10>I20101<#10>17-08-30 03:44<#10>AUTO POSTO CACIQUE DE LUCELIA LTDA<#10><#10>INVENTARIO NO TNQ<#10><#10>TANQ	PRODUCTO	VOL	VOL CT	A COMP	ALTURA	AGUA	TEMP<#10>1	Etanol Comum	3662	3647	26956	451.5		24<#10><#13><#10>
+08:42:06:948 | Info  | **************************************************
+08:42:06:950 | Info  | Comunicação via ethernet desativada na porta 10001
+08:42:06:951 | Info  | **************************************************
+08:43:21:422 | Info  | **************************************************
+08:43:21:424 | Info  | Comunicação via ethernet ativada na porta 10001
+08:43:21:424 | Info  | **************************************************
+08:43:21:425 | Info  | Esperando receber "I201" (apenas contido na mensagem: sim)
+08:43:24:109 | Info  | Recebido via ethernet: I20101
+08:43:24:111 | Info  | Enviado via ethernet: <#13><#10>%s<#13><#10>    11-10-13 16:06<#13><#10><#13><#10>POSTO POLEZEL LTDA<#13><#10>R.PAULA BUENO,25<#13><#10>TAQ.CAMPINAS-SP<#13><#10>CNPJ 500831530001-18<#13><#10><#13><#10>INVENTARIO NO TNQ       <#13><#10><#13><#10>TANQ PRODUCTO               VOL    VOL CT   A COMP   ALTURA    AGUA      TEMP<#13><#10>  3  GASOLINA COMUM        6667      5026    15142    760.1      0.0    24.23<#13><#10><#13><#10>
+08:45:08:673 | Info  | **************************************************
+08:45:08:675 | Info  | Comunicação via ethernet desativada na porta 10001
+08:45:08:675 | Info  | **************************************************
+08:51:52:947 | Info  | **************************************************
+08:51:52:949 | Info  | Comunicação via ethernet ativada na porta 10001
+08:51:52:950 | Info  | **************************************************
+08:51:52:950 | Info  | Esperando receber "I201" (apenas contido na mensagem: sim)
+08:52:05:787 | Info  | Recebido via ethernet: I20101
+08:52:05:788 | Info  | Enviado via ethernet: <#13><#10>%s<#13><#10>    11-10-13 16:06<#13><#10><#13><#10>POSTO POLEZEL LTDA<#13><#10>R.PAULA BUENO,25<#13><#10>TAQ.CAMPINAS-SP<#13><#10>CNPJ 500831530001-18<#13><#10><#13><#10>INVENTARIO NO TNQ       <#13><#10><#13><#10>TANQ PRODUCTO               VOL    VOL CT   A COMP   ALTURA    AGUA      TEMP<#13><#10>  3  GASOLINA COMUM        6667      5026    15142    760.1      0.0    24.23<#13><#10><#13><#10>

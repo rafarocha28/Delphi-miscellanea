@@ -1,0 +1,65 @@
+object MainLogsForm: TMainLogsForm
+  Left = 0
+  Top = 0
+  Caption = 'Teste Logs'
+  ClientHeight = 299
+  ClientWidth = 635
+  Color = clBtnFace
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 17
+  object SplitView: TSplitView
+    Left = 0
+    Top = 29
+    Width = 200
+    Height = 270
+    CloseStyle = svcCompact
+    OpenedWidth = 200
+    Placement = svpLeft
+    TabOrder = 0
+    ExplicitLeft = 56
+    ExplicitTop = 112
+    ExplicitHeight = 41
+  end
+  object Panel: TPanel
+    Left = 200
+    Top = 29
+    Width = 435
+    Height = 270
+    Align = alClient
+    Caption = 'Panel'
+    TabOrder = 1
+    ExplicitLeft = 286
+    ExplicitTop = 32
+    ExplicitWidth = 185
+    ExplicitHeight = 184
+    object ActivityIndicator: TActivityIndicator
+      Left = 121
+      Top = 48
+      IndicatorSize = aisLarge
+    end
+    object ToggleSwitch1: TToggleSwitch
+      Left = 81
+      Top = 140
+      Width = 74
+      Height = 20
+      TabOrder = 1
+    end
+  end
+  object ToolBar: TToolBar
+    Left = 0
+    Top = 0
+    Width = 635
+    Height = 29
+    Caption = 'ToolBar'
+    TabOrder = 2
+    ExplicitLeft = 80
+    ExplicitTop = 40
+    ExplicitWidth = 150
+  end
+end

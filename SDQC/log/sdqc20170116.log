@@ -1,0 +1,28 @@
+09:11:32:529 | Info  | **************************************************
+09:11:32:532 | Info  | Comunicação via ethernet ativada na porta 1234
+09:11:32:533 | Info  | **************************************************
+09:11:32:533 | Info  | Esperando receber teste (apenas contido na mensagem: não)
+09:11:50:985 | Info  | Esperando receber testess (apenas contido na mensagem: sim)
+09:51:39:296 | Info  | **************************************************
+09:51:39:300 | Info  | Comunicação via serial ativada na COM2
+09:51:39:300 | Info  | **************************************************
+09:51:39:301 | Info  | Esperando receber "lol" (apenas contido na mensagem: não)
+09:52:39:906 | Info  | Recebido via serial: lol
+09:52:39:908 | Info  | Enviado via serial: memes
+09:53:04:774 | Info  | Recebido via serial: lol
+09:53:04:776 | Info  | Enviado via serial: memes
+09:53:06:863 | Info  | Recebido via serial: bla
+09:53:09:575 | Info  | Recebido via serial: lb1
+09:53:10:935 | Info  | Recebido via serial: 212
+09:53:12:695 | Info  | Recebido via serial: 333
+09:53:13:743 | Info  | Recebido via serial: 333
+09:53:14:744 | Info  | Recebido via serial: 312
+09:53:15:631 | Info  | Recebido via serial: 312
+09:53:20:034 | Info  | Recebido via serial: 312
+09:53:22:084 | Info  | Recebido via serial: 312
+09:53:24:537 | Info  | Recebido via serial: 123
+09:53:27:538 | Info  | Recebido via serial: lol
+09:53:27:540 | Info  | Enviado via serial: memes
+09:53:42:147 | Info  | **************************************************
+09:53:42:148 | Info  | Comunicação via serial desativada na COM2
+09:53:42:149 | Info  | **************************************************

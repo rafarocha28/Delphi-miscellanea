@@ -1,0 +1,20 @@
+unit EndianSwap.Routines;
+
+interface
+
+function SwapEndian16(Value: smallint): smallint; register;
+function SwapEndian32(Value: integer): integer; register;
+
+implementation
+
+function SwapEndian32(Value: integer): integer; register;
+asm
+  bswap eax;
+end;
+
+function SwapEndian16(Value: smallint): smallint; register;
+asm
+  xchg  al, ah
+end;
+
+end.

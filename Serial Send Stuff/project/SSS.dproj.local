@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2016/11/11 09:20:30.000.160,=C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2016/11/11 09:30:51.000.684,C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\Projetos\Serial Send Stuff\SSS.MainForm.pas</Transaction>
+    <Transaction>2016/11/11 09:30:51.000.684,C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\Projetos\Serial Send Stuff\SSS.MainForm.dfm</Transaction>
+    <Transaction>2016/11/11 09:31:00.000.541,C:\Users\rafael.rocha\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Projetos\Serial Send Stuff\project\SSS.dproj</Transaction>
+    <Transaction>2016/11/11 09:59:15.000.400,D:\Projetos\Serial Send Stuff\SSS.MainForm.dfm=D:\Projetos\Serial Send Stuff\src\SSS.MainForm.dfm</Transaction>
+    <Transaction>2016/11/11 09:59:15.000.400,D:\Projetos\Serial Send Stuff\SSS.MainForm.pas=D:\Projetos\Serial Send Stuff\src\SSS.MainForm.pas</Transaction>
+  </Transactions>
+</BorlandProject>

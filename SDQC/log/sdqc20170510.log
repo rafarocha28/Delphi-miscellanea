@@ -1,0 +1,116 @@
+15:40:50:038 | Info  | **************************************************
+15:40:50:040 | Info  | Comunicação via ethernet ativada na porta 1234
+15:40:50:040 | Info  | **************************************************
+15:40:50:041 | Info  | Esperando receber "" (apenas contido na mensagem: não)
+15:41:25:424 | Info  | Recebido via ethernet: ÿûÿû ÿûÿû'ÿýÿûÿý
+15:41:35:278 | Info  | Recebido via ethernet: i201<#13><#10>
+15:41:35:280 | Info  | Enviado via ethernet: i201011610241300010000007449A4000455A58E246DF3F0E43C6D0AA00000000C2918E3900000000&&CCCC
+15:41:41:022 | Info  | Recebido via ethernet: i202<#13><#10>
+15:41:46:334 | Info  | Recebido via ethernet: i203<#13><#10>
+15:41:48:397 | Info  | Recebido via ethernet: i201<#13><#10>
+15:41:48:399 | Info  | Enviado via ethernet: i201011610241300010000007449A4000455A58E246DF3F0E43C6D0AA00000000C2918E3900000000&&CCCC
+15:41:51:694 | Info  | Recebido via ethernet: i301<#13><#10>
+15:42:50:832 | Info  | Recebido via ethernet: i20101<#13><#10>
+15:42:50:836 | Info  | Enviado via ethernet: i201011610241300010000007449A4000455A58E246DF3F0E43C6D0AA00000000C2918E3900000000&&CCCC
+15:42:55:744 | Info  | Recebido via ethernet: i20103<#13><#10>
+15:42:55:746 | Info  | Enviado via ethernet: i20103161031123003000000745D05800454D92A4464077A3442891840000000041C1816300000000&&CCCC
+16:02:33:218 | Info  | **************************************************
+16:02:33:220 | Info  | Comunicação via ethernet ativada na porta 1234
+16:02:33:220 | Info  | **************************************************
+16:02:33:221 | Info  | Esperando receber "" (apenas contido na mensagem: não)
+16:03:37:378 | Info  | **************************************************
+16:03:37:383 | Info  | Comunicação via ethernet ativada na porta 1234
+16:03:37:383 | Info  | **************************************************
+16:03:37:384 | Info  | Esperando receber "" (apenas contido na mensagem: não)
+16:03:42:665 | Info  | Recebido via ethernet: i20101
+16:04:02:576 | Info  | Enviado via ethernet: i201011610241300010000007449A4000455A58E246DF3F0E43C6D0AA00000000C2918E3900000000&&CCCC
+16:04:02:578 | Info  | Recebido via ethernet: i20101
+16:04:07:260 | Info  | Enviado via ethernet: i201011610241300010000007449A4000455A58E246DF3F0E43C6D0AA00000000C2918E3900000000&&CCCC
+16:04:07:660 | Info  | Recebido via ethernet: i20101
+16:04:07:662 | Info  | Enviado via ethernet: i201011610241300010000007449A4000455A58E246DF3F0E43C6D0AA00000000C2918E3900000000&&CCCC
+16:04:09:064 | Info  | Recebido via ethernet: i20101
+16:04:09:080 | Info  | Enviado via ethernet: i201011610241300010000007449A4000455A58E246DF3F0E43C6D0AA00000000C2918E3900000000&&CCCC
+16:04:10:470 | Info  | Recebido via ethernet: i20101
+16:04:10:475 | Info  | Enviado via ethernet: i201011610241300010000007449A4000455A58E246DF3F0E43C6D0AA00000000C2918E3900000000&&CCCC
+16:04:11:877 | Info  | Recebido via ethernet: i20102
+16:04:11:880 | Info  | Enviado via ethernet: i2010216103112300200000074587080045981C15462A18D8445E29970000000041C34CA800000000&&CCCC
+16:04:13:284 | Info  | Recebido via ethernet: i20102
+16:04:13:288 | Info  | Enviado via ethernet: i2010216103112300200000074587080045981C15462A18D8445E29970000000041C34CA800000000&&CCCC
+16:04:14:689 | Info  | Recebido via ethernet: i20102
+16:04:14:693 | Info  | Enviado via ethernet: i2010216103112300200000074587080045981C15462A18D8445E29970000000041C34CA800000000&&CCCC
+16:04:16:095 | Info  | Recebido via ethernet: i20102
+16:04:16:099 | Info  | Enviado via ethernet: i2010216103112300200000074587080045981C15462A18D8445E29970000000041C34CA800000000&&CCCC
+16:04:17:501 | Info  | Recebido via ethernet: i20102
+16:04:17:505 | Info  | Enviado via ethernet: i2010216103112300200000074587080045981C15462A18D8445E29970000000041C34CA800000000&&CCCC
+16:04:18:906 | Info  | Recebido via ethernet: i20103
+16:04:18:911 | Info  | Enviado via ethernet: i20103161031123003000000745D05800454D92A4464077A3442891840000000041C1816300000000&&CCCC
+16:04:20:311 | Info  | Recebido via ethernet: i20103
+16:04:20:316 | Info  | Enviado via ethernet: i20103161031123003000000745D05800454D92A4464077A3442891840000000041C1816300000000&&CCCC
+16:04:21:715 | Info  | Recebido via ethernet: i20103
+16:04:21:721 | Info  | Enviado via ethernet: i20103161031123003000000745D05800454D92A4464077A3442891840000000041C1816300000000&&CCCC
+16:04:23:121 | Info  | Recebido via ethernet: i20103
+16:04:23:125 | Info  | Enviado via ethernet: i20103161031123003000000745D05800454D92A4464077A3442891840000000041C1816300000000&&CCCC
+16:04:24:525 | Info  | Recebido via ethernet: i20103
+16:04:24:529 | Info  | Enviado via ethernet: i20103161031123003000000745D05800454D92A4464077A3442891840000000041C1816300000000&&CCCC
+16:04:25:930 | Info  | Recebido via ethernet: i20104
+16:04:25:934 | Info  | Enviado via ethernet: i20104161031123004000000745F69000454EFE0046400DA844297FEA0000000041C3DB6000000000&&CCCC
+16:04:27:334 | Info  | Recebido via ethernet: i20104
+16:04:27:338 | Info  | Enviado via ethernet: i20104161031123004000000745F69000454EFE0046400DA844297FEA0000000041C3DB6000000000&&CCCC
+16:04:28:738 | Info  | Recebido via ethernet: i20104
+16:04:28:742 | Info  | Enviado via ethernet: i20104161031123004000000745F69000454EFE0046400DA844297FEA0000000041C3DB6000000000&&CCCC
+16:04:30:143 | Info  | Recebido via ethernet: i20104
+16:04:30:148 | Info  | Enviado via ethernet: i20104161031123004000000745F69000454EFE0046400DA844297FEA0000000041C3DB6000000000&&CCCC
+16:04:31:550 | Info  | Recebido via ethernet: i20104
+16:04:31:553 | Info  | Enviado via ethernet: i20104161031123004000000745F69000454EFE0046400DA844297FEA0000000041C3DB6000000000&&CCCC
+16:04:32:955 | Info  | Recebido via ethernet: i20105
+16:04:32:958 | Info  | Enviado via ethernet: i20105161031123005000000745B058004581849A46344EDC444643820000000041C552A700000000&&CCCC
+16:04:34:358 | Info  | Recebido via ethernet: i20105
+16:04:34:362 | Info  | Enviado via ethernet: i20105161031123005000000745B058004581849A46344EDC444643820000000041C552A700000000&&CCCC
+16:04:35:763 | Info  | Recebido via ethernet: i20105
+16:04:35:766 | Info  | Enviado via ethernet: i20105161031123005000000745B058004581849A46344EDC444643820000000041C552A700000000&&CCCC
+16:04:37:168 | Info  | Recebido via ethernet: i20105
+16:04:37:172 | Info  | Enviado via ethernet: i20105161031123005000000745B058004581849A46344EDC444643820000000041C552A700000000&&CCCC
+16:04:38:573 | Info  | Recebido via ethernet: i20105
+16:04:38:576 | Info  | Enviado via ethernet: i20105161031123005000000745B058004581849A46344EDC444643820000000041C552A700000000&&CCCC
+16:04:39:978 | Info  | Recebido via ethernet: i20106
+16:04:39:982 | Info  | Enviado via ethernet: i2010616103112300600000074550500045BDF5AE4614B40A4483DFE341E8EA6041C9FD7B42011562&&CCCC
+16:04:41:382 | Info  | Recebido via ethernet: i20106
+16:04:41:387 | Info  | Enviado via ethernet: i2010616103112300600000074550500045BDF5AE4614B40A4483DFE341E8EA6041C9FD7B42011562&&CCCC
+16:04:42:787 | Info  | Recebido via ethernet: i20106
+16:04:42:791 | Info  | Enviado via ethernet: i2010616103112300600000074550500045BDF5AE4614B40A4483DFE341E8EA6041C9FD7B42011562&&CCCC
+16:04:44:192 | Info  | Recebido via ethernet: i20106
+16:04:44:199 | Info  | Enviado via ethernet: i2010616103112300600000074550500045BDF5AE4614B40A4483DFE341E8EA6041C9FD7B42011562&&CCCC
+16:04:45:598 | Info  | Recebido via ethernet: i20106
+16:04:45:605 | Info  | Enviado via ethernet: i2010616103112300600000074550500045BDF5AE4614B40A4483DFE341E8EA6041C9FD7B42011562&&CCCC
+16:04:47:004 | Info  | Recebido via ethernet: i20107
+16:04:47:009 | Info  | Enviado via ethernet: i20107161031123007000000745ABE00045BDF5AE4614B40A4483DFE341E8EA6041C9FD7B42011562&&CCCC
+16:04:48:409 | Info  | Recebido via ethernet: i20107
+16:04:48:415 | Info  | Enviado via ethernet: i20107161031123007000000745ABE00045BDF5AE4614B40A4483DFE341E8EA6041C9FD7B42011562&&CCCC
+16:04:49:814 | Info  | Recebido via ethernet: i20107
+16:04:49:818 | Info  | Enviado via ethernet: i20107161031123007000000745ABE00045BDF5AE4614B40A4483DFE341E8EA6041C9FD7B42011562&&CCCC
+16:04:51:220 | Info  | Recebido via ethernet: i20107
+16:04:51:224 | Info  | Enviado via ethernet: i20107161031123007000000745ABE00045BDF5AE4614B40A4483DFE341E8EA6041C9FD7B42011562&&CCCC
+16:04:52:625 | Info  | Recebido via ethernet: i20107
+16:04:52:629 | Info  | Enviado via ethernet: i20107161031123007000000745ABE00045BDF5AE4614B40A4483DFE341E8EA6041C9FD7B42011562&&CCCC
+16:05:20:068 | Info  | **************************************************
+16:05:20:070 | Info  | Comunicação via ethernet desativada na porta 1234
+16:05:20:071 | Info  | **************************************************
+16:08:33:209 | Info  | **************************************************
+16:08:33:214 | Info  | Comunicação via ethernet ativada na porta 1234
+16:08:33:214 | Info  | **************************************************
+16:08:33:215 | Info  | Esperando receber "" (apenas contido na mensagem: não)
+16:09:51:531 | Info  | Recebido via ethernet: i20101
+16:09:51:535 | Info  | Enviado via ethernet: i2010116111711520110000074545879A455A58E246DF3F0E43C6D0AA00000000C2918E3900000000&&EEA5
+16:13:32:076 | Info  | Recebido via ethernet: i20101
+16:13:32:079 | Info  | Enviado via ethernet: i2010116111711520110000074545879A455A58E246DF3F0E43C6D0AA00000000C2918E3900000000&&EEA5
+16:14:16:868 | Info  | Recebido via ethernet: i20101
+16:14:16:870 | Info  | Enviado via ethernet: i2010116111711520110000074545879A455A58E246DF3F0E43C6D0AA00000000C2918E3900000000&&EEA5
+17:06:59:028 | Info  | **************************************************
+17:06:59:032 | Info  | Comunicação via ethernet ativada na porta 1234
+17:06:59:033 | Info  | **************************************************
+17:06:59:034 | Info  | Esperando receber "" (apenas contido na mensagem: não)
+17:09:03:794 | Info  | Recebido via ethernet: i20101
+17:09:03:800 | Info  | Enviado via ethernet: i2010116111711520110000074545879A455A58E246DF3F0E43C6D0AA00000000C2918E3900000000&&EEA5
+17:15:34:284 | Info  | **************************************************
+17:15:34:286 | Info  | Comunicação via ethernet desativada na porta 1234
+17:15:34:286 | Info  | **************************************************

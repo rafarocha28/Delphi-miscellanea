@@ -1,0 +1,52 @@
+unit TT.View.MainForm;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages,
+  System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+
+  OtlCommon,
+  OtlCollections,
+  OtlTask,
+  OtlParallel;;
+
+type
+  TMainForm = class(TForm)
+    ListMemo: TMemo;
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    FSr: TSearchRec;
+    FFindTask: IOmniParallelTask
+    procedure FindFiles;
+  public
+    { Public declarations }
+  end;
+
+var
+  MainForm: TMainForm;
+
+implementation
+
+{$R *.dfm}
+
+procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  FindClose(FSr);
+end;
+
+procedure TMainForm.FormShow(Sender: TObject);
+begin
+  ListMemo.Lines.Clear;
+
+  Parallel.ParallelTask.Execute(FindFiles).NoWait;
+end;
+
+procedure TMainForm.FindFiles;
+begin
+
+end;
+
+end.

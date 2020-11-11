@@ -1,0 +1,7 @@
+unit EndianSwap.Routines;
+
+interface
+
+implementation
+
+end.

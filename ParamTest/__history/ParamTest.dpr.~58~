@@ -1,0 +1,107 @@
+program ParamTest;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils,
+  System.StrUtils,
+  ParamTest.Utils in 'src\ParamTest.Utils.pas',
+  ParamTest.Thread.Write in 'src\ParamTest.Thread.Write.pas';
+
+procedure WriteHelp;
+
+  procedure WriteHelpParameters;
+  var
+    i: byte;
+  begin
+    Writeln('  Help');
+    for i := Low(HelpParams) to High(HelpParams) do
+      Writeln(Format('   -%s', [HelpParams[i]]));
+  end;
+
+begin
+  Writeln('Help for this program.');
+  Writeln(DupeString('*', 20));
+  Writeln('List of accepted parameters:');
+  WriteHelpParameters;
+  Writeln(DupeString('*', 20));
+end;
+
+function HasHelpParameter: Boolean;
+var
+  i: smallint;
+begin
+  Result := False;
+
+  for i := Low(HelpParams) to High(HelpParams) do
+    if FindCmdLineSwitch(HelpParams[i]) then
+    begin
+      Result := True;
+      Break;
+    end
+end;
+
+procedure WritePowers;
+begin
+  Writeln('List of byte multipliers');
+  Writeln('  Kilobyte = ', KILOBYTE, ' bytes');
+  Writeln('  Megabyte = ', MEGABYTE, ' bytes');
+  Writeln('  Gigabyte = ', GIGABYTE, ' bytes');
+  Writeln;
+end;
+
+procedure WriteRandomWords;
+var
+  n: integer;
+begin
+  Randomize;
+  while n <> 16 do
+  begin
+    n := Random(16) + 1;
+    Writeln(GenerateRandomString(n);
+    WaitAndProcess;
+  end;
+end;
+
+procedure WriteIEEE754;
+var
+  i: byte;
+  s: String;
+begin
+  Writeln('List of IEEE 754 floats converted to decimal');
+  with TWrite.Create do
+  try
+    FreeOnTerminate := True;
+    for i := Low(HexVolumes) to High(HexVolumes) do
+    begin
+      s := Format('  %s = %f (main thread) %d',
+        [HexVolumes[i], HexIEEE754ToDecimalDouble(HexVolumes[i]), i]);
+      Writeln(GetStringWithThreadId(s));
+      WaitAndProcess;
+    end;
+  finally
+    Terminate;
+    Writeln;
+  end;
+end;
+
+begin
+  try
+    if HasHelpParameter then
+      WriteHelp
+    else
+    begin
+      Writeln('You ran this program without asking for help.');
+      WritePowers;
+      WriteIEEE754;
+      WriteRandomWords;
+    end;
+
+    Readln;
+  except
+    on E: Exception do
+      Writeln(E.ClassName, ': ', E.Message);
+  end;
+end.

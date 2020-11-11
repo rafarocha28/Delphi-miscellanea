@@ -1,0 +1,83 @@
+unit ParamTest.Thread.WriteFile;
+
+interface
+
+uses
+  System.Classes;
+
+type
+  TWriteFile = class(TThread)
+  private
+    FFileName: TFileName;
+    FLock: TCriticalSection;
+  protected
+    procedure Execute; override;
+    procedure WriteFile;
+  public
+    constructor Create; override;
+    destructor Destroy; overload;
+    property FileName: TFileName read FFileName write FFileName;
+  end;
+
+implementation
+
+{ TWriteFile }
+
+uses
+  Vcl.Forms,
+  ParamTest.Utils;
+
+constructor TWriteFile.Create;
+begin
+  FLock := TCriticalSection.Create;
+  inherited;
+end;
+
+destructor TWriteFile.Destroy;
+begin
+  FLock.Free;
+  inherited;
+end;
+
+procedure TWriteFile.Execute;
+begin
+  while not Terminated do
+  begin
+    WriteFile;
+    Sleep(150);
+    Application.ProcessMessages;
+  end;
+end;
+
+procedure TWriteFile.WriteFile;
+var
+  Arq: Text;
+  s, s1: String;
+begin
+  FLock.Enter;
+  try
+    AssignFile(Arq, FFileName);
+    if FileExists(FFileName) then
+      Append(Arq)
+    else
+      Rewrite(Arq);
+
+    for i := Low(HexVolumes) to High(HexVolumes) do
+    begin
+      s1 := Format('  %s = %f',
+        [HexVolumes[i], HexIEEE754ToDecimalDouble(HexVolumes[i])]);
+
+      s := Format('%s [%6.6d] | %s',
+        [FormatDateTime('hh:nn:ss:zzz', Now), GetCurrentThreadId(), s1]);
+
+      Writeln(Arq, s);
+    end;
+
+    CloseFile(Arq);
+
+  finally
+    FLock.Leave;
+  end;
+end;
+
+end.

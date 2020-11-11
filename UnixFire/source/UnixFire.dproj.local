@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/04/11 14:22:21.000.849,=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/04/12 08:45:17.000.431,=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/04/12 10:34:33.000.466,=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/04/12 10:45:42.000.331,=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/04/12 10:49:09.000.841,=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/04/12 16:54:34.000.504,=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/04/12 17:29:13.000.911,=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/04/12 18:01:43.000.907,=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/04/25 09:14:36.000.969,=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/04/26 15:57:46.000.706,=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/04/26 19:10:03.000.052,=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/04/26 19:15:04.000.832,C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\query\Unit1.pas=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/04/26 19:15:04.000.832,C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\query\Unit1.dfm=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2017/04/26 19:15:06.000.808,C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\query\Project1.dproj=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2017/04/27 11:33:32.000.245,C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\query\UnixFire.dproj=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\query\Project1.dproj</Transaction>
+    <Transaction>2017/04/27 11:33:45.000.020,C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\query\Main.dfm=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\query\Unit1.dfm</Transaction>
+    <Transaction>2017/04/27 11:33:45.000.020,C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\query\Main.pas=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\query\Unit1.pas</Transaction>
+    <Transaction>2017/04/27 11:40:34.000.756,C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\UnixFire\source\UnixFire.dproj=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\query\UnixFire.dproj</Transaction>
+    <Transaction>2017/04/27 11:40:46.000.709,C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\UnixFire\source\Main.pas=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\query\Main.pas</Transaction>
+    <Transaction>2017/04/27 11:40:46.000.709,C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\UnixFire\source\Main.dfm=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\query\Main.dfm</Transaction>
+    <Transaction>2017/04/27 14:15:39.000.998,=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\UnixFire\source\Unit1.pas</Transaction>
+    <Transaction>2017/04/27 14:15:54.000.550,C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\UnixFire\source\WinService.pas=C:\Users\takeo.yoshida\Documents\Embarcadero\Studio\Projects\UnixFire\source\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

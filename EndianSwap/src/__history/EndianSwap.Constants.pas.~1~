@@ -1,0 +1,7 @@
+unit EndianSwap.Constants;
+
+interface
+
+implementation
+
+end.

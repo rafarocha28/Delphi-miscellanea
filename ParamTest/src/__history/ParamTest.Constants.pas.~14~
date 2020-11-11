@@ -1,0 +1,47 @@
+unit ParamTest.Constants;
+
+interface
+
+uses
+  System.Math;
+
+const
+  HELP_PARAM0 = '?';
+  HELP_PARAM1 = 'h';
+  HELP_PARAM2 = 'help';
+
+  HelpParams: array [0..2] of string = (
+    HELP_PARAM0, HELP_PARAM1, HELP_PARAM2
+  );
+
+  KILOBYTE = 1024;
+  MEGABYTE = KILOBYTE * KILOBYTE;
+  GIGABYTE = MEGABYTE * KILOBYTE;
+
+type
+  TIEEE754 = packed record
+    case Byte of
+      0: (AsInteger: Word);
+      1: (AsFloat: Single);
+    end;
+
+function HexIEEE754ToDecimalDouble(AHex: String): Double;
+
+implementation
+
+uses
+  System.SysUtils;
+
+function HexIEEE754ToDecimalDouble(AHex: String): Double;
+var
+  ieee754: TIEEE754;
+begin
+  if not (AHex[1] = '$') then
+    AHex := '$' + AHex;
+
+  ieee754.AsInteger := StrToInt64(AHex);
+
+  Result := ieee754.AsFloat;
+end;
+
+end.

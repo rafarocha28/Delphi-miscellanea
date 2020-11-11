@@ -1,0 +1,22 @@
+unit Log.Level;
+
+interface
+
+type
+{$SCOPEDENUMS ON}
+  TLogType = (Error, Warning, Information, Debug);
+{$SCOPEDENUMS OFF}
+  TLogLevel = set of TLogType;
+
+resourcestring
+  sLogTypeError = 'Error';
+  sLogTypeWarning = 'Warning';
+  sLogTypeInformation = 'Information';
+  sLogTypeDebug = 'Debug';
+const
+  LogType: array[Low(TLogType) .. High(TLogType)] of String = (sLogTypeError,
+    sLogTypeWarning, sLogTypeInformation, sLogTypeDebug);
+
+implementation
+
+end.

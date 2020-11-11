@@ -1,0 +1,94 @@
+unit SSS.MainForm;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, OoMisc, AdPort;
+
+type
+  TMainForm = class(TForm)
+    ApdComPort: TApdComPort;
+    SendButton: TButton;
+    ReplyMemo: TMemo;
+    procedure FormShow(Sender: TObject);
+    procedure SendButtonClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure ApdComPortTriggerAvail(CP: TObject; Count: Word);
+  private
+    FTankNumber: Byte;
+    procedure CheckTankNumber;
+  protected
+    property TankNumber: Byte read FTankNumber write FTankNumber;
+  public
+    { Public declarations }
+  end;
+
+var
+  MainForm: TMainForm;
+
+implementation
+
+{$R *.dfm}
+
+procedure TMainForm.ApdComPortTriggerAvail(CP: TObject; Count: Word);
+var
+  i: Word;
+  c: AnsiChar;
+  s: AnsiString;
+begin
+  s := EmptyStr;
+  try
+    for i := 1 to Count do
+    begin
+      c := ApdComPort.GetChar;
+      if c in [#32..#126] then
+        s := s + c;
+    end;
+  finally
+    ReplyMemo.Lines.Add('Recebido ' + String(s));
+  end;
+end;
+
+procedure TMainForm.CheckTankNumber;
+begin
+  if FTankNumber > 4 then
+    FTankNumber := 1;
+end;
+
+procedure TMainForm.FormCreate(Sender: TObject);
+begin
+  FTankNumber := 1;
+end;
+
+procedure TMainForm.FormShow(Sender: TObject);
+begin
+  with ApdComPort do
+  begin
+    Baud := 1200;
+    DataBits := 7;
+    Parity := pOdd;
+    StopBits := 1;
+    //FlowState := fcOff;
+    //Open := True;
+  end;
+end;
+
+procedure TMainForm.SendButtonClick(Sender: TObject);
+var
+  cmd: string;
+begin
+  CheckTankNumber;
+  try
+    ApdComPort.Open := True;
+    cmd := Format('*4%.2d*', [FTankNumber]);
+    ApdComPort.Output := AnsiString(cmd);
+    ReplyMemo.Lines.Add('Enviado ' + cmd);
+  finally
+    ApdComPort.Open := False;
+  end;
+
+  Inc(FTankNumber);
+end;
+
+end.

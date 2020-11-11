@@ -1,0 +1,12 @@
+unit SDQC.Config;
+
+interface
+
+type
+  TSerialConfiguration = record
+
+  end;
+
+implementation
+
+end.

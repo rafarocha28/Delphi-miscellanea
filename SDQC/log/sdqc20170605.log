@@ -1,0 +1,25 @@
+10:35:56:543 | Info  | **************************************************
+10:35:56:547 | Info  | Comunicação via ethernet ativada na porta 10001
+10:35:56:548 | Info  | **************************************************
+10:35:56:548 | Info  | Esperando receber "" (apenas contido na mensagem: não)
+10:37:22:340 | Info  | **************************************************
+10:37:22:344 | Info  | Comunicação via ethernet ativada na porta 10001
+10:37:22:345 | Info  | **************************************************
+10:37:22:346 | Info  | Esperando receber "" (apenas contido na mensagem: não)
+10:37:37:108 | Info  | Recebido via ethernet: i20101
+10:37:37:151 | Info  | Enviado via ethernet: i2010116111711520110000074545879A455A58E246DF3F0E43C6D0AA00000000C2918E3900000000&&EEA5
+10:38:04:597 | Info  | Recebido via ethernet: i20102
+10:38:04:599 | Info  | Enviado via ethernet: i2010216103112300200000074587080045981C15462A18D8445E29970000000041C34CA800000000&&CCCC
+10:38:12:482 | Info  | Recebido via ethernet: i20103
+10:38:12:485 | Info  | Enviado via ethernet: i20103161031123003000000745D05800454D92A4464077A3442891840000000041C1816300000000&&CCCC
+10:38:13:841 | Info  | Recebido via ethernet: i20104
+10:38:13:843 | Info  | Enviado via ethernet: i20104161031123004000000745F69000454EFE0046400DA844297FEA0000000041C3DB6000000000&&CCCC
+10:38:15:198 | Info  | Recebido via ethernet: i20105
+10:38:15:202 | Info  | Enviado via ethernet: i20105161031123005000000745B058004581849A46344EDC444643820000000041C552A700000000&&CCCC
+10:38:16:555 | Info  | Recebido via ethernet: i20106
+10:38:16:559 | Info  | Enviado via ethernet: i2010616103112300600000074550500045BDF5AE4614B40A4483DFE341E8EA6041C9FD7B42011562&&CCCC
+10:38:17:912 | Info  | Recebido via ethernet: i20107
+10:38:17:917 | Info  | Enviado via ethernet: i20107161031123007000000745ABE00045BDF5AE4614B40A4483DFE341E8EA6041C9FD7B42011562&&CCCC
+10:39:09:449 | Info  | **************************************************
+10:39:09:451 | Info  | Comunicação via ethernet desativada na porta 10001
+10:39:09:451 | Info  | **************************************************

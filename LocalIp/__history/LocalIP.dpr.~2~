@@ -1,0 +1,29 @@
+program LocalIP;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils,
+  IdStack;
+
+function GetLocalIp: String;
+begin
+  TIdStack.IncUsage;
+  try
+    Result := GStack.LocalAddress;
+  finally
+    TIdStack.DecUsage;
+  end;
+end;
+
+begin
+  try
+    Writeln(GetLocalIp);
+    Readln;
+  except
+    on E: Exception do
+      Writeln(E.ClassName, ': ', E.Message);
+  end;
+end.
